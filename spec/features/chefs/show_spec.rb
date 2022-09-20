@@ -58,5 +58,13 @@ RSpec.describe 'chef show page' do
 
       find_link({text: "Ingredients Index", href: "/chefs/#{@chef_2.id}/ingredients"}).visible?
     end
+
+    it 'When I click on that link I am taken to a chefs ingredient index page' do
+      visit chef_path(@chef_1)
+
+      click_link("Ingredients Index")
+
+      expect(current_path).to eq("/chefs/#{@chef_1.id}/ingredients")
+    end
   end
 end
