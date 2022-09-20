@@ -5,3 +5,10 @@
   <p>Description- <%= @dish.description %></p>
 
 </div>
+
+<div id="dish-ingredients">
+  <% @dish.ingredients.each do |ingredient| %>
+    <p>Name -<%= ingredient.name %></p>
+    <p>Calories- <%= ingredient.calories %></p>
+  <% end %>
+</div>
