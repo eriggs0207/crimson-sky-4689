@@ -26,14 +26,14 @@ RSpec.describe 'dish show page' do
 # And I see the chef's name.
   describe 'user story 1' do
     it 'I see the dish’s name and description' do
-      visit dish_path(@dish_1)
+      visit "/dishes/#{@dish_1.id}"
 
       within("#dish-info") do
         expect(page).to have_content(@dish_1.name)
         expect(page).to have_content(@dish_1.description)
       end
 
-      visit dish_path(@dish_2)
+      visit "/dishes/#{@dish_2.id}"
 
       within("#dish-info") do
         expect(page).to have_content(@dish_2.name)
@@ -42,7 +42,7 @@ RSpec.describe 'dish show page' do
     end
 
     it 'And I see a list of ingredients for that dish' do
-      visit dish_path(@dish_1)
+      visit "/dishes/#{@dish_1.id}"
 
       within("#dish-ingredients") do
         expect(page).to have_content(@ingredient_1.name)
@@ -51,7 +51,7 @@ RSpec.describe 'dish show page' do
         expect(page).to have_content(@ingredient_2.calories)
       end
 
-      visit dish_path(@dish_2)
+      visit "/dishes/#{@dish_2.id}"
 
       within("#dish-ingredients") do
         expect(page).to have_content(@ingredient_3.name)
@@ -62,11 +62,11 @@ RSpec.describe 'dish show page' do
     end
 
     it 'I see the chefs name' do
-      visit dish_path(@dish_1)
+      visit "/dishes/#{@dish_1.id}"
 
       expect(page).to have_content(@chef_1.name)
 
-      visit dish_path(@dish_2)
+      visit "/dishes/#{@dish_2.id}"
 
       expect(page).to have_content(@chef_2.name)
     end
@@ -77,13 +77,13 @@ RSpec.describe 'dish show page' do
 # I see the total calorie count for that dish.
   describe 'user story 2' do
     it 'I see the total calorie count for that dish' do
-      visit dish_path(@dish_1)
+      visit "/dishes/#{@dish_1.id}"
 
       within("#total-calories") do
         expect(page).to have_content("Total Calories - 600")
       end
 
-      visit dish_path(@dish_2)
+      vvisit "/dishes/#{@dish_2.id}"
 
       within("#total-calories") do
         expect(page).to have_content("Total Calories - 800")
