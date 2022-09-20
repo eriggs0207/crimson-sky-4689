@@ -38,16 +38,25 @@ RSpec.describe 'chef show page' do
 # and I can see a unique list of names of all the ingredients that this chef uses.
   describe 'user story 3' do
     it 'I see the name of that chef' do
-      visit "/chefs/#{@chef_1.id}"
+      visit chef_path(@chef_1)
 
       expect(page).to have_content(@chef_1.name)
       expect(page).to_not have_content(@chef_2.name)
 
-      visit "/chefs/#{@chef_2.id}"
+      visit chef_path(@chef_2)
 
       expect(page).to have_content(@chef_2.name)
       expect(page).to_not have_content(@chef_1.name)
+    end
 
+    it 'I see a link to view a list of all ingredients that this chef uses in their dishes' do
+      visit chef_path(@chef_1)
+
+      find_link({text: "Ingredients Index", href: "/chefs/#{@chef_1.id}/ingredients"}).visible?
+
+      visit chef_path(@chef_2)
+
+      find_link({text: "Ingredients Index", href: "/chefs/#{@chef_2.id}/ingredients"}).visible?
     end
   end
 end

@@ -26,49 +26,57 @@ RSpec.describe 'dish show page' do
 # And I see the chef's name.
   describe 'user story 1' do
     it 'I see the dish’s name and description' do
-      visit "/dishes/#{@dish_1.id}"
+      visit dish_path(@dish_1)
 
       within("#dish-info") do
         expect(page).to have_content(@dish_1.name)
         expect(page).to have_content(@dish_1.description)
+        expect(page).to_not have_content(@dish_2.name)
       end
 
-      visit "/dishes/#{@dish_2.id}"
+      visit dish_path(@dish_2)
 
       within("#dish-info") do
         expect(page).to have_content(@dish_2.name)
         expect(page).to have_content(@dish_2.description)
+        expect(page).to_not have_content(@dish_1.description)
       end
     end
 
     it 'And I see a list of ingredients for that dish' do
-      visit "/dishes/#{@dish_1.id}"
+      visit dish_path(@dish_1)
 
       within("#dish-ingredients") do
         expect(page).to have_content(@ingredient_1.name)
         expect(page).to have_content(@ingredient_1.calories)
         expect(page).to have_content(@ingredient_2.name)
         expect(page).to have_content(@ingredient_2.calories)
+        expect(page).to_not have_content(@ingredient_3.name)
+        expect(page).to_not have_content(@ingredient_4.calories)
       end
 
-      visit "/dishes/#{@dish_2.id}"
+      visit dish_path(@dish_2)
 
       within("#dish-ingredients") do
         expect(page).to have_content(@ingredient_3.name)
         expect(page).to have_content(@ingredient_3.calories)
         expect(page).to have_content(@ingredient_4.name)
         expect(page).to have_content(@ingredient_4.calories)
+        expect(page).to_not have_content(@ingredient_1.calories)
+        expect(page).to_not have_content(@ingredient_2.name)
       end
     end
 
     it 'I see the chefs name' do
-      visit "/dishes/#{@dish_1.id}"
+      visit dish_path(@dish_1)
 
       expect(page).to have_content(@chef_1.name)
+      expect(page).to_not have_content(@chef_2.name)
 
-      visit "/dishes/#{@dish_2.id}"
+      visit dish_path(@dish_2)
 
       expect(page).to have_content(@chef_2.name)
+      expect(page).to_not have_content(@chef_1.name)
     end
   end
 
@@ -77,16 +85,18 @@ RSpec.describe 'dish show page' do
 # I see the total calorie count for that dish.
   describe 'user story 2' do
     it 'I see the total calorie count for that dish' do
-      visit "/dishes/#{@dish_1.id}"
+      visit dish_path(@dish_1)
 
       within("#total-calories") do
         expect(page).to have_content("Total Calories - 600")
+        expect(page).to_not have_content("Total Calories - 800")
       end
 
-      vvisit "/dishes/#{@dish_2.id}"
+      visit dish_path(@dish_2)
 
       within("#total-calories") do
         expect(page).to have_content("Total Calories - 800")
+        expect(page).to_not have_content("Total Calories - 600")
       end
     end
   end
