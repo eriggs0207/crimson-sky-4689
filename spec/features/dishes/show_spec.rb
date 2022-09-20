@@ -62,6 +62,13 @@ RSpec.describe 'dish show page' do
     end
 
     it 'I see the chefs name' do
+      visit dish_path(@dish_1)
 
+      expect(page).to have_content(@chef_1.name)
+
+      visit dish_path(@dish_2)
+
+      expect(page).to have_content(@chef_2.name)
+    end
   end
 end
