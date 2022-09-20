@@ -1,18 +1,18 @@
 <h3>Dish Info</h3>
-<h5> Chef -<%= @chef.name %></h5>
+<h5> Chef - <%= @chef.name %></h5>
 <div id="dish-info">
-  <p>Name -<%= @dish.name %></p>
+  <p>Name - <%= @dish.name %></p>
   <p>Description- <%= @dish.description %></p>
 
 </div>
 
 <div id="dish-ingredients">
   <% @dish.ingredients.each do |ingredient| %>
-    <p>Name -<%= ingredient.name %></p>
-    <p>Calories- <%= ingredient.calories %></p>
+    <p>Name - <%= ingredient.name %></p>
+    <p>Calories - <%= ingredient.calories %></p>
   <% end %>
 </div>
 
 <div id="total-calories">
-  <%= @dish.ingredients.total_calories %>
+  <p>Total Calories - <%= @dish.ingredients.total_calories %></p>
 </div>
