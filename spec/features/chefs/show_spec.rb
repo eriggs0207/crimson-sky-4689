@@ -14,7 +14,7 @@ RSpec.describe 'chef show page' do
     @ingredient_2 = Ingredient.create!(name: "Calabrian Chiles", calories: 100)
     @ingredient_3 = Ingredient.create!(name: "Beef", calories: 800)
     @ingredient_4 = Ingredient.create!(name: "Bun", calories: 200)
-    @ingredient_5 = Ingredient.create!(name: "Beef", calories: 600)
+    @ingredient_5 = Ingredient.create!(name: "Stuff", calories: 600)
     @ingredient_6 = Ingredient.create!(name: "Noodles", calories: 200)
     @ingredient_7 = Ingredient.create!(name: "Cheese", calories: 400)
     @ingredient_8 = Ingredient.create!(name: "Sauce", calories: 150)
@@ -69,7 +69,7 @@ RSpec.describe 'chef show page' do
 
     it 'I can see a unique list of names of all the ingredients that this chef uses' do
       visit "/chefs/#{@chef_1.id}/ingredients"
-
+      save_and_open_page
       within("#chef-ingredients") do
         expect(page).to have_content(@ingredient_1.name)
         expect(page).to have_content(@ingredient_2.name)
