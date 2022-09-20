@@ -12,3 +12,7 @@
     <p>Calories- <%= ingredient.calories %></p>
   <% end %>
 </div>
+
+<div id="total-calories">
+  <%= @dish.ingredients.total_calories %>
+</div>
